@@ -1,0 +1,46 @@
+function checkDirectToStatus() {
+	const urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.has('s')) {
+		statusBegin();
+		showflags = new String(urlParams.get('s'));
+
+		// x - all
+		if (showflags.search("x") > -1) { showflags = "MFSWUD"; }
+
+		// s - expand Statistics section
+		if (showflags.search("s") > -1) { show("statusStatsDiv"); }
+		// S - hide Statistics section
+		if (showflags.search("S") > -1) { hide("statusStatsDiv");	hide("tabStats"); }
+
+		// w - expand Wifi section
+		if (showflags.search("w") > -1) { show("statusWifi"); }
+		// W - hide Wifi section
+		if (showflags.search("W") > -1) { hide("statusWifi");
+			EbyId("tabWifi").onclick = ""; EbyId("tabWifi").innerText = "";
+		}
+
+		// u - expand Uploaders section
+		if (showflags.search("u") > -1) { show("statusUploaders"); }
+		// U - hide Uploaders section
+		if (showflags.search("U") > -1) { hide("statusUploaders");
+			EbyId("tabUploaders").children[0].onclick = "";
+			EbyId("tabUploaders").children[0].innerText = "";
+		}
+
+		// d - expand Data Logs section
+		if (showflags.search("d") > -1) { show("statusLogsDiv"); }
+		// D - hide Data Logs section
+		if (showflags.search("D") > -1) { hide("statusLogsDiv"); 	hide("tabLogs"); }
+
+		// i - collapse IO section
+		if (showflags.search("i") > -1) { hide("statusIODiv"); }
+		// I - hide IO section
+		if (showflags.search("I") > -1) { hide("statusIODiv"); 		hide("tabIO"); }
+
+		// F - hide File Log section
+		if (showflags.search("F") > -1) { hide("statusLogsTable"); }
+
+		// M - hide Main Menu
+		if (showflags.search("M") > -1) { hide("bigIdeasTable"); 	hide("mainMenu"); }
+	}
+}
